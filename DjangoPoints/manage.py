@@ -17,6 +17,15 @@ def main():
         ) from exc
     execute_from_command_line(sys.argv)
 
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'mydatabase',
+            'USER': 'postgres',
+            'HOST': 'localhost',
+        }
+    }
+
 
 if __name__ == '__main__':
     main()
