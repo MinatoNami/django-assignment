@@ -23,7 +23,7 @@
 4. Apply migrations:
 
    ```bash
-   cd /DjangoPoints
+   cd DjangoPoints
    python manage.py migrate
    ```
 
