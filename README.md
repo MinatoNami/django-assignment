@@ -55,7 +55,8 @@ File used for Python interaction with Postgresql is postgresql_interact.py.
 5. Queried points from database
 6. Deleted table
 7. Setup Amazon RDS and configured database for public access (for ease of access, normal way is to connect via a VPC)
-8. Tested connection and performed the tasks listed in Step 1-6
+8. Created an Inbound rule on EC2 Secuirity Group for local access.
+9. Tested connection and performed the tasks listed in Step 1-6
 
 ## Part 2
 
