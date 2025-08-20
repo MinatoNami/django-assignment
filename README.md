@@ -1,5 +1,7 @@
 # Python & Django Interview Assignment
 
+# Installation instructions
+
 1. Clone the repository:
 
    ```bash
@@ -75,3 +77,4 @@ For finding outliers, there are many methods to define what is an "outlier". Typ
 
 1. Create functions for both Polynomial Regression and RANSAC.
 2. Enabled CSV upload for ease of use
+3. Plotted subplots of both methods to show outliers and the curve
