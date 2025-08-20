@@ -15,16 +15,18 @@
    ```
 
 3. Install dependencies:
+
    ```bash
    pip install -r requirements.txt
    ```
 
-<!-- 4. Apply migrations:
-    ```bash
-    python manage.py migrate
-    ```
+4. Apply migrations:
+
+   ```bash
+   python manage.py migrate
+   ```
 
 5. Run the development server:
-    ```bash
-    python manage.py runserver
-    ``` -->
+   ```bash
+   python manage.py runserver
+   ```
