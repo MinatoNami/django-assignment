@@ -69,6 +69,8 @@ Django Project for this part is in the /DjangoPoints folder
 3. Setup a static site to add/delete points, and retrieve points to be plotted on ChartJS for visualizations.
 4. Added feature to support CSV upload of X,Y points (part 3), to aid me in visualizing the data.
 
+![image](/django-postgresql-screenshot.png)
+
 ## Part 3
 
 File used for finding outliers is outlier.py.

@@ -19,59 +19,64 @@
     <button type="submit">Upload</button>
   </form>
   <hr />
+  <div style="display: flex">
+    <div>
+      <p>Coordinates stored in the database:</p>
+      {% if coordinates %}
+      <div style="max-height: 400px; overflow-y: scroll">
+        <table>
+          <tr>
+            <th>X</th>
+            <th>Y</th>
+            <th>Action</th>
+          </tr>
+          {% for x, y, id in coordinates %}
+          <tr>
+            <td>{{ x }}</td>
+            <td>{{ y }}</td>
+            <td>
+              <form method="POST" action="" style="display: inline">
+                {% csrf_token %}
+                <input type="hidden" name="delete_id" value="{{ id }}" />
+                <button type="submit" style="color: red">Delete</button>
+              </form>
+            </td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+    <div style="width: 100%; height: 500px">
+      <h2>Scatter Plot of Points</h2>
+      <canvas id="pointsChart" width="100" height="100"></canvas>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <script>
+        const ctx = document.getElementById('pointsChart').getContext('2d');
+        const dataPoints = [
+            {% for x, y, id in coordinates %}
+                {x: {{ x }}, y: {{ y }}},
+            {% endfor %}
+        ];
 
-  <hr />
-  <p>Coordinates stored in the database:</p>
-  {% if coordinates %}
-  <table>
-    <tr>
-      <th>X</th>
-      <th>Y</th>
-      <th>Action</th>
-    </tr>
-    {% for x, y, id in coordinates %}
-    <tr>
-      <td>{{ x }}</td>
-      <td>{{ y }}</td>
-      <td>
-        <form method="POST" action="" style="display: inline">
-          {% csrf_token %}
-          <input type="hidden" name="delete_id" value="{{ id }}" />
-          <button type="submit" style="color: red">Delete</button>
-        </form>
-      </td>
-    </tr>
-    {% endfor %}
-  </table>
-
-  <h2>Scatter Plot of Points</h2>
-  <canvas id="pointsChart" width="100" height="100"></canvas>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script>
-    const ctx = document.getElementById('pointsChart').getContext('2d');
-    const dataPoints = [
-        {% for x, y, id in coordinates %}
-            {x: {{ x }}, y: {{ y }}},
-        {% endfor %}
-    ];
-
-    new Chart(ctx, {
-        type: 'scatter',
-        data: {
-            datasets: [{
-                label: 'Coordinates',
-                data: dataPoints,
-                backgroundColor: 'rgba(54, 162, 235, 0.7)',
-            }]
-        },
-        options: {
-            scales: {
-                x: { type: 'linear', position: 'bottom' },
-                y: { type: 'linear' }
+        new Chart(ctx, {
+            type: 'scatter',
+            data: {
+                datasets: [{
+                    label: 'Coordinates',
+                    data: dataPoints,
+                    backgroundColor: 'rgba(54, 162, 235, 0.7)',
+                }]
+            },
+            options: {
+                scales: {
+                    x: { type: 'linear', position: 'bottom' },
+                    y: { type: 'linear' }
+                }
             }
-        }
-    });
-  </script>
+        });
+      </script>
+    </div>
+  </div>
   {% else %}
   <p>No data found in database.</p>
   {% endif %}
