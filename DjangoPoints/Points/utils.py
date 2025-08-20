@@ -32,10 +32,20 @@ def connectToDB(isLocal=True):
 def retrieveData(db_connection):
     try:
         cur = db_connection.cursor()
-        cur.execute("SELECT x, y FROM coordinates")
+        cur.execute("SELECT x, y, id FROM coordinates")
         rows = cur.fetchall()
         cur.close()
         return rows
     except Exception as e:
         print("Error retrieving data:", e)
         return []
+
+
+def deletePoint(db_connection, point_id):
+    try:
+        cur = db_connection.cursor()
+        cur.execute("DELETE FROM coordinates WHERE id = %s", (point_id,))
+        db_connection.commit()
+        cur.close()
+    except Exception as e:
+        print("Error deleting point:", e)
