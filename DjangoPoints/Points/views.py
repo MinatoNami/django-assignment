@@ -5,7 +5,8 @@ from .utils import connectToDB, retrieveData, deletePoint
 
 def index(request):
     db_connection = connectToDB(isLocal=True)
-
+    if not db_connection:
+        return render(request, 'Points/index.html', {"error": "Database connection failed."})
     if request.method == "POST":
         # Case 1: Adding a single point via form
         if "x" in request.POST and "y" in request.POST:
